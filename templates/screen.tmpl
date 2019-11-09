@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:${appName}${relative}/index.dart';
+import 'package:${appName}/compnents/index.dart';
+import 'package:${appName}/util/provider/index.dart';
+class ${upperName}Screen extends StatefulWidget {
+  const ${upperName}Screen({
+    Key key,
+  })  : super(key: key);
+
+  @override
+  ${upperName}ScreenState createState() {
+    return ${upperName}ScreenState();
+  }
+}
+
+class ${upperName}ScreenState extends State<${upperName}Screen> {
+
+  @override
+  void initState() {
+    super.initState();
+    this._load();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<${upperName}Bloc, ${upperName}State>(
+        builder: (
+          BuildContext context,
+          ${upperName}State currentState,
+        ) {
+          if (currentState is Un${upperName}State) {
+            return DefaultCircularProgressIndicator();
+          }
+          if (currentState is Error${upperName}State) {
+            return DefaultErrorScreen(
+              errorInfo: currentState.errorMessage,
+              callback: this._load,
+            );
+          }
+          // if (currentState is In${upperName}State)
+          return ProviderWidget<TabViewModel>(
+              // model: TabViewModel(tabs: currentState.tabs,pages: currentState.pages),
+              builder: (_,model,__)=>TabViewScaffold(),
+            );
+          // return DefaultCircularProgressIndicator();
+        });
+  }
+
+  void _load([bool isError = false]) {
+    BlocProvider.of<${upperName}Bloc>(context).add(Un${upperName}Event());
+    BlocProvider.of<${upperName}Bloc>(context).add(Load${upperName}Event(isError));
+  }
+}

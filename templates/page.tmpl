@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:${appName}${relative}/index.dart';
+
+class ${upperName}Page extends StatelessWidget {
+  static const String routeName = "/${privateName}";
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        builder: (context)=> ${upperName}Bloc(),
+        child: ${upperName}Screen()
+    );
+  }
+}

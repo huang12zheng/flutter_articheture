@@ -1,0 +1,42 @@
+import 'dart:async';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:${appName}${relative}/index.dart';
+import 'dart:developer' as developer;
+
+class ${upperName}Bloc extends HydratedBloc<${upperName}Event, ${upperName}State> {
+  // todo: check singleton for logic in project
+  static final ${upperName}Bloc _${privateName}BlocSingleton = ${upperName}Bloc._internal();
+  factory ${upperName}Bloc() {
+    return _${privateName}BlocSingleton;
+  }
+  ${upperName}Bloc._internal();
+  
+  dispose(){
+    _${privateName}BlocSingleton.dispose();
+    super.close();
+  }
+
+  ${upperName}State get initialState => super.initialState ?? Un${upperName}State(0);
+
+  @override
+  Stream<${upperName}State> mapEventToState(
+    ${upperName}Event event,
+  ) async* {
+    try {
+      yield await event.applyAsync(currentState: state, bloc: this);
+    } catch (_, stackTrace) {
+      developer.log('$_', name: '${upperName}Bloc', error: _, stackTrace: stackTrace);
+      yield state;
+    }
+  }
+
+  @override
+  ${upperName}State fromJson(Map<String, dynamic> json) {
+    return null;
+  }
+
+  @override
+  Map<String, dynamic> toJson(${upperName}State state) {
+    return null;
+  }
+}
