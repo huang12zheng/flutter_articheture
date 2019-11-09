@@ -13,7 +13,6 @@ class MainScreen extends StatefulWidget {
     return MainScreenState();
   }
 }
-List colors=[Colors.blue,Colors.pink,Colors.orange];
 class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   @override
   void initState() {

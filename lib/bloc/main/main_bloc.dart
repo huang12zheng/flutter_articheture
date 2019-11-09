@@ -12,6 +12,7 @@ class MainBloc extends HydratedBloc<MainEvent, MainState> {
 
   dispose(){
     _mainBlocSingleton.dispose();
+    super.close();
   }
 
   MainState get initialState => super.initialState ?? UnMainState(0);
