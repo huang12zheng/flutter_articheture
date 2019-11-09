@@ -1,7 +1,8 @@
+import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
-import 'package:nature_things/bloc/setting/index.dart';
-import 'package:nature_things/compnents/index.dart';
+import 'package:nature_things/bloc/main/index.dart';
 
 @immutable
 abstract class MainState extends Equatable {
@@ -40,25 +41,25 @@ class UnMainState extends MainState {
     return UnMainState(version+1);
   }
 }
-
+/// [LoadMainEvent]
 class InMainState extends MainState {
-  final SettingModel setting;
-  final List<DefaultTabItem> tabs;
-  
+  // final SettingModel setting;
+  final List<TabItem> tabs;
+  final List<Widget> pages;
 
-  InMainState(version, {this.setting, this.tabs}) : super(version, [setting]);
+  InMainState(version, {this.pages, this.tabs}) : super(version, [pages]);
 
   @override
-  String toString() => 'InMainState $setting';
+  String toString() => 'InMainState $pages';
 
   @override
   InMainState getStateCopy() {
-    return InMainState(this.version, setting: this.setting, tabs: this.tabs);
+    return InMainState(this.version, pages: this.pages, tabs: this.tabs);
   }
 
   @override
   InMainState getNewVersion() {
-    return InMainState(version+1, setting: this.setting, tabs: this.tabs);
+    return InMainState(version+1, pages: this.pages, tabs: this.tabs);
   }
 
 }
