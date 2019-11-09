@@ -1,4 +1,4 @@
-import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nature_things/bloc/main/index.dart';
@@ -23,17 +23,17 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
   final MainBloc _mainBloc;
   MainScreenState(this._mainBloc);
   TabController tabController;
-  int selectedPos = 0;
-  double bottomNavBarHeight = 60;
-  CircularBottomNavigationController _navigationController;
 
   @override
   void initState() {
     super.initState();
     this._load();
 
-    tabController = TabController(vsync: this, length: 2);
-    _navigationController = new CircularBottomNavigationController(selectedPos);
+    tabController = TabController(vsync: this, length: 2)..addListener((){
+            setState(() {
+                // currentIndex=tabController.index;
+            });
+        });
   }
 
   @override
@@ -59,44 +59,36 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
               callback: this._load,
             );
           }
-          if (currentState is InMainState)
+          if (currentState is InMainState)          
             return Scaffold(
               appBar: AppBar(
                 title: Text("Main"),
               ),
-              body: Stack(
+              bottomNavigationBar: currentState.tabs.length == 0 ? Container() :
+                CurvedNavigationBar(
+                  buttonBackgroundColor: Color(0xFFC69B71),
+                  backgroundColor: Color(0xFF8E8E8E),
+                  items: currentState.tabs,
+                  index: tabController.index,
+                  onTap: (index) {
+                    //Handle button tap
+                    tabController.animateTo(index);
+                  },
+                ),
+              body: TabBarView(
+                 controller: tabController,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: bottomNavBarHeight),
-                    child: TabBarView(
-                      controller: tabController,
-                      children: <Widget>[
-                          Container(
-                              color: colors[0],
-                          ),
-                          Container(
-                              color: colors[1],
-                          ),
-                      ],
+                    Container(
+                        color: colors[0],
                     ),
-                  ),
-                  Align(alignment: Alignment.bottomCenter,
-                    child: currentState.tabs.length == 0 ? Container() : 
-                    CircularBottomNavigation(
-                      currentState.tabs,
-                      controller: _navigationController,
-                      barHeight: bottomNavBarHeight,
-                      selectedCallback: (int index) {
-                        this.selectedPos = selectedPos;
-                        tabController.animateTo(index);
-                        print(index);
-                      },
+                    Container(
+                        color: colors[1],
                     ),
-                  )
-                ]
+                    // Container(
+                    //     color: colors[2],
+                    // )
+                ],
               )
-              
-              
             );
           return DefaultCircularProgressIndicator();
         });
