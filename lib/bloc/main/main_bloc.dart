@@ -4,19 +4,18 @@ import 'package:nature_things/bloc/main/index.dart';
 import 'dart:developer' as developer;
 
 class MainBloc extends HydratedBloc<MainEvent, MainState> {
-  // todo: check singleton for logic in project
   static final MainBloc _mainBlocSingleton = MainBloc._internal();
   factory MainBloc() {
     return _mainBlocSingleton;
   }
   MainBloc._internal();
-  
-  @override
+
   dispose(){
     _mainBlocSingleton.dispose();
   }
 
-  MainState get initialState => UnMainState(0);
+  MainState get initialState => super.initialState ?? UnMainState(0);
+  
 
   @override
   Stream<MainState> mapEventToState(
