@@ -75,5 +75,5 @@ android/*
 ios/*
 pubspec.lock
 .metadata
-lib/generated/*
+# lib/generated/*
 # res/values/*
