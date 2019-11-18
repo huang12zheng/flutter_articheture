@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'dart:developer' as developer;
 
 import 'package:nature_things/bloc/setting/index.dart';
+import 'package:nature_things/bloc/setting/setting_connect.dart';
 
 @immutable
 abstract class MainEvent {
