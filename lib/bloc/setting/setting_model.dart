@@ -99,6 +99,9 @@ extension MapExtension on List<TabModel>{
       }).toList();
   }
 }
-// mapTabModelToTabItem(){
 
-// }
+extension ListToJsonExtension on List<TabModel>{
+  String toJson() {
+    return this.map((model)=>model.toJson().toString()).join();
+  }
+}

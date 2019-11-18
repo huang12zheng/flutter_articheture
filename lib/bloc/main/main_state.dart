@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:nature_things/bloc/main/index.dart';
+import 'package:nature_things/bloc/setting/index.dart';
 
 @immutable
 abstract class MainState extends Equatable {
@@ -44,7 +45,7 @@ class UnMainState extends MainState {
 /// [LoadMainEvent]
 class InMainState extends MainState {
   // final SettingModel setting;
-  final List<TabItem> tabs;
+  final List<TabModel> tabs;
   final List<Widget> pages;
 
   InMainState(version, {this.pages, this.tabs}) : super(version, [pages]);

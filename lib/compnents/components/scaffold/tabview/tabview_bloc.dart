@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:nature_things/compnents/components/bar/bottom_bar/tab/index.dart';
+import '../../bar/bottom_bar/tab/index.dart';
 import 'package:nature_things/compnents/components/scaffold/tabview/index.dart';
 import 'dart:developer' as developer;
 

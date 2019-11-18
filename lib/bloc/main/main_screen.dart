@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nature_things/bloc/main/index.dart';
-import 'package:nature_things/compnents/components/scaffold/tabview_scaffold.dart';
+import 'package:nature_things/compnents/components/scaffold/tabview/tabview_scaffold.dart';
 import 'package:nature_things/compnents/index.dart';
-import 'package:nature_things/util/provider/provider_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key key,})  : super(key: key);
@@ -43,10 +42,8 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
             );
           }
           if (currentState is InMainState)
-            return ProviderWidget<TabViewModel>(
-              model: TabViewModel(tabs: currentState.tabs,pages: currentState.pages),
-              builder: (_,model,__)=>TabViewScaffold(),
-            );
+            return TabViewScaffold(pages: currentState.pages, tabs: currentState.tabs,);
+
           return DefaultCircularProgressIndicator();
         });
   }

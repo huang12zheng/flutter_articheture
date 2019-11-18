@@ -38,9 +38,12 @@ class LoadMainEvent extends MainEvent {
       if (currentState is InMainState) {
         return currentState.getNewVersion();
       }
-      List<Widget> pages=[Container(color: Colors.blue),Container(color: Colors.red)];
+      List<Widget> pages=[
+        Container(color: Colors.blue),
+        Container(color: Colors.red)
+      ];
       SettingModel setting = await _settingRepository.getSetting();
-      return InMainState(0, pages: pages, tabs: setting.filterTabs() );
+      return InMainState(0, pages: pages, tabs: setting.tabs);
     } catch (_, stackTrace) {
       developer.log('$_', name: 'LoadMainEvent', error: _, stackTrace: stackTrace);
       return ErrorMainState(0, _?.toString());

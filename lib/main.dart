@@ -21,14 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: MainPage(),
-      home: TabViewScaffold(
-        pages: [Container(color: Colors.blue),Container(color: Colors.red)],
-        tabs: [
-        TabModel(id: "1", module: "add", name: "s"),
-        TabModel(id: "2", module: "list", name: "2"),
-      ]
-      ),
+      home: MainPage(),
       title: 'Flutter Demo',
       theme: myTheme,
       // ThemeData(

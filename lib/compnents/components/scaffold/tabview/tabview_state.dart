@@ -1,4 +1,3 @@
-import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
@@ -73,8 +72,6 @@ class InTabviewState extends TabviewState {
   Widget build(){
     return TabViewScaffold(pages: pages, tabs: tabs);
   }
-
-
 }
 
 class ErrorTabviewState extends TabviewState {
