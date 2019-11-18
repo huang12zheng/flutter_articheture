@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 class TabItemDM {
   final String text;
   final IconData defaultIcon;
-  // final IconData activeIcon;
-
-  // const TabItemDM(this.text, this.defaultIcon, this.activeIcon);
+ 
   const TabItemDM(this.text, this.defaultIcon);
 }
 

@@ -83,9 +83,9 @@ class TabViewModel  with ChangeNotifier {
     notifyListeners();
   }
 
-  backToTop() {
-    if (scrollController != null) scrollController.position.jumpTo(5);
-  }
+  // backToTop() {
+  //   if (scrollController != null) scrollController.position.jumpTo(5);
+  // }
 
   // init(){
     
@@ -99,28 +99,28 @@ class TabViewModel  with ChangeNotifier {
 }
 
 
-class PageModel  with ChangeNotifier {
-  PageController controller = PageController(initialPage: 0);
-  ScrollController scrollController = new ScrollController();
-  // GlobalKey kFind = GlobalKey();
-  // GlobalKey kGroup = GlobalKey();
+// class PageModel  with ChangeNotifier {
+//   PageController controller = PageController(initialPage: 0);
+//   ScrollController scrollController = new ScrollController();
+//   // GlobalKey kFind = GlobalKey();
+//   // GlobalKey kGroup = GlobalKey();
 
 
-  // List<StatefulWidget> get pages => _pages;
-  PageModel(this.pages);
-  List<StatefulWidget> pages;
+//   // List<StatefulWidget> get pages => _pages;
+//   PageModel(this.pages);
+//   List<StatefulWidget> pages;
 
-  backToTop() {
-    if (scrollController != null) scrollController.position.jumpTo(5);
-  }
+//   backToTop() {
+//     if (scrollController != null) scrollController.position.jumpTo(5);
+//   }
 
-  init(){
+//   init(){
 
-  }
+//   }
 
-  dispose(){
-    super.dispose();
-    controller.dispose();
-    scrollController.dispose();
-  }
-}
+//   dispose(){
+//     super.dispose();
+//     controller.dispose();
+//     scrollController.dispose();
+//   }
+// }

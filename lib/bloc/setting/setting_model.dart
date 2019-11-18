@@ -1,4 +1,7 @@
+import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:nature_things/bloc/setting/tab/tab_model.dart';
 
 /// 1. what page user would set.
 ///   [bottomTab], [color], [font], [intl], [message]...
@@ -74,5 +77,28 @@ class TabModel with EquatableMixin{
 
   @override
   List<Object> get props => [id,module,name];
-
 }
+extension FilterExtension on SettingModel{
+  List<TabItem> filterTabs() {
+    return 
+    tabs.where((TabModel tab) => TabItemData.mapToData[tab.module]!=null). 
+      map((TabModel tab) {
+        TabItemDM data = TabItemData.mapToData[tab.module];
+        return TabItem(data.defaultIcon,data.text,Colors.blue);
+      }).toList();
+  }
+}
+
+extension MapExtension on List<TabModel>{
+  List<TabItem> map2TabItem() {
+    return 
+    this.where((TabModel tab) => TabItemData.mapToData[tab.module]!=null). 
+      map((TabModel tab) {
+        TabItemDM data = TabItemData.mapToData[tab.module];
+        return TabItem(data.defaultIcon,data.text,Colors.blue);
+      }).toList();
+  }
+}
+// mapTabModelToTabItem(){
+
+// }

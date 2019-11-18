@@ -6,7 +6,6 @@ import 'package:meta/meta.dart';
 import 'dart:developer' as developer;
 
 import 'package:nature_things/bloc/setting/index.dart';
-import 'package:nature_things/util/bloc_util/filter.dart';
 
 @immutable
 abstract class MainEvent {
@@ -40,7 +39,7 @@ class LoadMainEvent extends MainEvent {
       }
       List<Widget> pages=[Container(color: Colors.blue),Container(color: Colors.red)];
       SettingModel setting = await _settingRepository.getSetting();
-      return InMainState(0, pages: pages, tabs: filterTabs(setting));
+      return InMainState(0, pages: pages, tabs: setting.filterTabs() );
     } catch (_, stackTrace) {
       developer.log('$_', name: 'LoadMainEvent', error: _, stackTrace: stackTrace);
       return ErrorMainState(0, _?.toString());
